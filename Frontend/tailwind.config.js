@@ -8,7 +8,8 @@ export default {
     extend: {
       colors: {
         "primary-text" : "#313131",
-        "blue" : "#2400FF"
+        "blue" : "#2400FF",
+        "background" : "#5F5FFF",
       }
     },
   },

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 import LandingImage from '../assets/LandingImage.jpg';
 import Navbar from '../components/Navbar';
 import Modal from '../components/Modal';
-import AboutUs from './AboutUs';
 
 const LandingPage = () => {
 
