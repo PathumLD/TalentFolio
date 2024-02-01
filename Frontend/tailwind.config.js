@@ -12,6 +12,9 @@ export default {
         "background" : "#5F5FFF",
       }
     },
+    // borderRadius: {
+    //   "curve" : "100px",
+    // }
   },
   plugins: [],
 }

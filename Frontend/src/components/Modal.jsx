@@ -10,7 +10,7 @@ const Modal = ({ isOpen, onClose, children }) => {
       <div className="relative flex flex-col w-full bg-white border shadow-lg outline-none rounded-3xl h-60 focus:outline-none">
         <div className="flex items-start justify-start p-5 rounded-t-md border-blueGray-200">
           <h3 className="flex items-center m-4 mt-10 text-3xl font-bold text-primary-text">Register as</h3>
-          <RxCross1 className='flex items-end justify-end ml-auto text-xl cursor-pointer text-primary-text' onClick={onClose} />
+          <RxCross1 className='flex items-end justify-end ml-auto text-xl cursor-pointer hover:text-red-600 text-primary-text' onClick={onClose} />
         </div>
         <div className="relative flex-auto p-6">{children}</div>
       </div>

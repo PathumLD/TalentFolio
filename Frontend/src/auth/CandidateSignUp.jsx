@@ -5,18 +5,19 @@ import { FaGoogle, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
 const CandidateSignUp = () => {
   return (
     <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-      <div className='flex items-center justify-center h-full'>
-        <div className='flex items-center justify-center w-full h-screen-96 sm:h-screen sm:bg-background'>
+      <div className='flex items-center justify-center h-full sm:order-first'> {/* Image container with order-first class for small screens */}
+        <div className='flex items-center justify-center w-full py-4 h-screen-96 sm:h-screen sm:bg-background'>
           <img
             src={signup}
             alt='signup'
-            className='w-full h-full sm:rounded-lg'
+            className='w-full h-full mt-6 sm:mt-0 sm:rounded-lg'
           />
         </div>
       </div>
 
+
       <div className='pr-3'>
-        <h1 className="flex justify-center mt-2 text-5xl font-bold leading-7 text-blue sm:mt-10 ">Sign Up</h1>
+        <h1 className="flex justify-center mt-2 text-5xl font-bold leading-7 text-blue sm:mt-14 ">Sign Up</h1>
         <form action="#" method="POST"  className="max-w-2xl px-5 py-8 mt-6 space-y-6 lg:border-opacity-0 md:mr-3 sm:mt-12 sm:space-y-5 lg:mx-auto lg:rounded-xl lg:border-x-2 lg:border-t-2 lg:border-b-8 lg:border-blue/20 md:border-b-8 md:border-blue/20">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               
