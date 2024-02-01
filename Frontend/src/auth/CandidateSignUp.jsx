@@ -5,8 +5,8 @@ import { FaGoogle, FaFacebookF, FaLinkedinIn } from "react-icons/fa6";
 const CandidateSignUp = () => {
   return (
     <div className='grid grid-cols-1 gap-4 sm:grid-cols-2'>
-      <div className='flex items-center justify-center h-screen'>
-        <div className='flex items-center justify-center w-full h-96 sm:h-full sm:bg-background'>
+      <div className='flex items-center justify-center h-full'>
+        <div className='flex items-center justify-center w-full h-screen-96 sm:h-screen sm:bg-background'>
           <img
             src={signup}
             alt='signup'
@@ -15,9 +15,9 @@ const CandidateSignUp = () => {
         </div>
       </div>
 
-      <div className=''>
+      <div className='pr-3'>
         <h1 className="flex justify-center mt-2 text-5xl font-bold leading-7 text-blue sm:mt-10 ">Sign Up</h1>
-        <form action="#" method="POST" className="max-w-2xl px-5 py-8 mt-6 space-y-6 lg:border-t-2 lg:border-b-8 lg:mx-auto sm:mt-12 sm:space-y-5 lg:border-blue/20 lg:rounded-xl lg:border-x-2">
+        <form action="#" method="POST"  className="max-w-2xl px-5 py-8 mt-6 space-y-6 lg:border-opacity-0 md:mr-3 sm:mt-12 sm:space-y-5 lg:mx-auto lg:rounded-xl lg:border-x-2 lg:border-t-2 lg:border-b-8 lg:border-blue/20 md:border-b-8 md:border-blue/20">
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-6">
               
               <div className=" sm:col-span-3">
