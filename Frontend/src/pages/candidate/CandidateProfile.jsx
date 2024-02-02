@@ -1,10 +1,14 @@
 import React from 'react'
 import CandidateSidebar from '../../components/candidate/CandidateSidebar'
+import CandidateNavbar from '../../components/candidate/CandidateNavbar'
 
 const CandidateProfile = () => {
   return (
-    <div>
+    <div className='flex'>
+
+        
        <CandidateSidebar />
+       <CandidateNavbar />
     </div>
   )
 }
