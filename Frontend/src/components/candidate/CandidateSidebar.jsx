@@ -6,7 +6,7 @@ import classNames from 'classnames'
 
 const linkClasses = 'flex items-center gap-2 px-3 py-2 hover:bg-blue-400 hover:no-underline active:bg-blue-700 rounded-md text-lg'
 
-const CandidateSidebar = () => {
+const CandidateSidebar = ({ mobileSidebarOpen }) => {
 
   const [open, setOpen] = useState(true);
 
@@ -16,7 +16,7 @@ const CandidateSidebar = () => {
 
   return (
     <>
-      <div className="flex max-sm:toggleSidebar">
+      <div className={`flex max-sm:${mobileSidebarOpen ? 'block' : 'hidden'}`}>
       <div className={`bg-white  h-screen pl-5  pt-1 flex flex-col text-blue overflow-hidden ${open ?  "w-60 sm:w-72" : "w-20"} duration-300 relative `}>
 
         <div className='inline-flex items-center gap-2 px-1 py-4 '>
@@ -57,8 +57,8 @@ function SidebarLink({ item, isOpen }){
   return(
     <Link
       to={item.path}
-      className={`${pathname === item.path ? 'border-r-blue border-r-2 text-blue font-bold shadow-md' : 'text-neutral-500'} ${linkClasses} ${
-        !isOpen && 'mb-2' // Add margin between icons when the sidebar is not fully open
+      className={`${pathname === item.path ? 'border-r-blue border-r-2 text-blue font-bold shadow-md' : 'text-neutral-500'} ${linkClasses} 
+      ${!isOpen && 'mb-2' // Add margin between icons when the sidebar is not fully open
       }`}
     >
       <span className='text-xl'>{item.icon}</span>

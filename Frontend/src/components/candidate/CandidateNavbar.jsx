@@ -9,23 +9,21 @@ function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
   }
 
+  
    
 
-const CandidateNavbar = ({toggleSidebar}) => {
-
-console.log()
+const CandidateNavbar = ({ toggleMobileSidebar }) => {
   
 
-  return (
-    <Disclosure as="nav" className="w-full h-16 bg-white border-b-2 shadow-md sm:h-20 border-b-gray-100">
-      
-        <>
-          <div className="right-0 px-2 mx-auto sm:px-6 lg:px-8">
-            <div className="relative flex items-center justify-between h-16 sm:justify-end">
 
-            <button onClick={toggleSidebar} className="flex text-blue sm:hidden">
-              <FaBars />
-            </button>
+  return (
+    <Disclosure as='nav' className='w-full h-16 bg-white border-b-2 shadow-md sm:h-20 border-b-gray-100'>
+    <>
+      <div className='right-0 px-2 mx-auto sm:px-6 lg:px-8'>
+        <div className='relative flex items-center justify-between h-16 sm:justify-end'>
+          <button onClick={toggleMobileSidebar} className='flex text-blue sm:hidden'>
+            <FaBars />
+          </button>
 
              
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">

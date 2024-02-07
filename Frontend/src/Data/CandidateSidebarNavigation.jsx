@@ -31,7 +31,7 @@ export const CandidateSidebarNavigation = [
     {
         key: 'applied/vacancies',
         label: 'Applied Vacancies',
-        path: '/applied-vacancies',
+        path: '/candidate/applied-vacancies',
         icon: <FiCheckCircle />
     },
     {
@@ -49,7 +49,7 @@ export const CandidateSidebarNavigation = [
     {
         key: 'events',
         label: 'Events',
-        path: '/counsellor/events',
+        path: '/candidate/events',
         icon: <FiGrid />
     },
     

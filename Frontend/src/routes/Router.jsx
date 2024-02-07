@@ -6,6 +6,10 @@ import CandidateSignUp from '../auth/CandidateSignUp';
 import CandidateProfile from '../pages/candidate/CandidateProfile';
 import CandidateLayout from '../components/shared/CandidateLayout';
 import CandidateDashboard from '../pages/candidate/CandidateDashboard';
+import CandidateAppliedVacancies from '../pages/candidate/CandidateAppliedVacancies';
+import CandidateInteviews from '../pages/candidate/CandidateInteviews';
+import CandidateAllVacancies from '../pages/candidate/CandidateAllVacancies';
+import CandidateEvents from '../pages/candidate/CandidateEvents';
 
 const Router = () => {
   return (
@@ -18,6 +22,10 @@ const Router = () => {
       <Route path="/candidate" element={<CandidateLayout />}>
         <Route index element={<CandidateDashboard />} />
         <Route path="profile" element={<CandidateProfile />} />
+        <Route path="applied-vacancies" element={<CandidateAppliedVacancies />} />
+        <Route path="interviews" element={<CandidateInteviews />} />
+        <Route path="all-vacancies" element={<CandidateAllVacancies />} />
+        <Route path="events" element={<CandidateEvents />} />
       </Route>
     </Routes>
   );
