@@ -377,3 +377,106 @@
 
 
 
+// import React, { useState } from 'react';
+// import { FaPlus } from 'react-icons/fa';
+// import { HiCheck, HiX } from 'react-icons/hi';
+
+// const CandidateProfileInfo = () => {
+//   const [bioEditing, setBioEditing] = useState(false);
+//   const [linkedinEditing, setLinkedinEditing] = useState(false);
+//   const [githubEditing, setGithubEditing] = useState(false);
+//   const [websiteEditing, setWebsiteEditing] = useState(false);
+
+//   const handleEditStart = (section) => {
+//     switch (section) {
+//       case 'bio':
+//         setBioEditing(true);
+//         break;
+//       case 'linkedin':
+//         setLinkedinEditing(true);
+//         break;
+//       case 'github':
+//         setGithubEditing(true);
+//         break;
+//       case 'website':
+//         setWebsiteEditing(true);
+//         break;
+//       // Add more cases for other sections if needed
+//       default:
+//         break;
+//     }
+//   };
+
+//   const handleEditEnd = (section) => {
+//     switch (section) {
+//       case 'bio':
+//         setBioEditing(false);
+//         break;
+//       case 'linkedin':
+//         setLinkedinEditing(false);
+//         break;
+//       case 'github':
+//         setGithubEditing(false);
+//         break;
+//       case 'website':
+//         setWebsiteEditing(false);
+//         break;
+//       // Add more cases for other sections if needed
+//       default:
+//         break;
+//     }
+//   };
+
+//   return (
+//     <>
+//       <div className='pb-6 border-[#001A23]/50 border-b-2'>
+//         <div className='flex justify-center '>
+//           <div className='flex justify-center w-24 h-24 mt-6 bg-gray-200 rounded-full outline outline-gray-300 outline-offset-4 md:w-32 md:h-32 '>
+//             <img src={dp} alt="candidate profile" className='w-40 rounded-full '/>
+//           </div>
+//         </div>
+//         <h1 className='mt-4 text-3xl font-bold text-center text-blue '>Pathum Lakshan</h1>
+//         <h1 className='text-xl font-medium text-center text-blue'>Software Engineer</h1>
+//       </div>
+
+//       {/* Basic Details Section */}
+//       <div className='border-[#001A23]/50 border-b-2 '>
+//       <div className='mx-4 my-6 '>
+//         <h3 className='mt-4 text-xl font-bold text-primary-text'>Basic Details</h3>
+
+//       {/* Bio Section */}
+//       <div className='flex flex-col items-start mt-4 '>
+//         <label htmlFor="bio" className='font-medium text-blue-text'>
+//           Your Bio
+//         </label>
+//         <div
+//           id="bio"
+//           name="bio"
+//           className='p-2 text-justify rounded-md text-md text-primary-text'
+//           contentEditable={true}
+//           onClick={() => handleEditStart('bio')}
+//           onBlur={() => handleEditEnd('bio')}
+//           dangerouslySetInnerHTML={{
+//             __html:
+//               'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium',
+//           }}
+//         />
+
+//         {bioEditing && (
+//           <div className='flex items-center gap-6 mt-1 ml-auto'>
+//             <HiCheck className='m-2 text-xl rounded-full hover:bg-green-600 hover:text-white' />
+//             <HiX className='m-2 text-xl rounded-full hover:bg-red-600 hover:text-white' />
+//           </div>
+//         )}
+//       </div>
+
+//       {/* LinkedIn Section */}
+//       {/* ... (similar code structure for LinkedIn, Github, Personal Website) */}
+
+//       {/* ... (existing code) */}
+
+//     </>
+//   );
+// };
+
+// export default CandidateProfileInfo;

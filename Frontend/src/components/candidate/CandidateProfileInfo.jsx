@@ -1,8 +1,72 @@
-import React from 'react';
+import React, { useState } from 'react';
 import dp from '../../assets/dp.jpg';
 import { FaPlus } from 'react-icons/fa';
+import { HiCheck,HiX } from "react-icons/hi";
+import AddPopup from './AddPopup';
+import { FiEdit3 } from "react-icons/fi";
 
 const CandidateProfileInfo = () => {
+
+  const [bioEditing, setBioEditing] = useState(false);
+  const [linkedinEditing, setLinkedinEditing] = useState(false);
+  const [githubEditing, setGithubEditing] = useState(false);
+  const [websiteEditing, setWebsiteEditing] = useState(false);
+
+
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+
+  const handleEditStart = (section) => {
+    switch (section) {
+      case 'bio':
+        setBioEditing(true);
+        break;
+      case 'linkedin':
+        setLinkedinEditing(true);
+        break;
+      case 'github':
+        setGithubEditing(true);
+        break;
+      case 'website':
+        setWebsiteEditing(true);
+        break;
+      // Add more cases for other sections if needed
+      default:
+        break;
+    }
+  };
+
+  const handleEditEnd = (section) => {
+    switch (section) {
+      case 'bio':
+        setBioEditing(false);
+        break;
+      case 'linkedin':
+        setLinkedinEditing(false);
+        break;
+      case 'github':
+        setGithubEditing(false);
+        break;
+      case 'website':
+        setWebsiteEditing(false);
+        break;
+      // Add more cases for other sections if needed
+      default:
+        break;
+    }
+  };
+
+
+ 
+  
   return (
     <>
     <div className='pb-6 border-[#001A23]/50 border-b-2'>
@@ -19,57 +83,105 @@ const CandidateProfileInfo = () => {
       <div className='mx-4 my-6 '>
         <h3 className='mt-4 text-xl font-bold text-primary-text'>Basic Details</h3>
 
-          <div className='flex flex-col items-start mt-4 '>
-            <label htmlFor="bio" className='font-medium text-blue-text'>Your Bio</label>
-            <div
-              id="bio"
-              name="bio"
-              className='p-2 text-justify rounded-md text-md text-primary-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium'
-              }}
-            />
-          </div>
+        <div className='flex flex-col items-start mt-4 '>
+        <label htmlFor="bio" className='font-medium text-blue-text'>
+          Your Bio
+        </label>
+        <div
+          id="bio"
+          name="bio"
+          className='p-2 text-justify rounded-md text-md text-primary-text'
+          contentEditable={true}
+          onClick={() => handleEditStart('bio')}
+          onBlur={() => handleEditEnd('bio')}
+          dangerouslySetInnerHTML={{
+            __html:
+              'Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium',
+          }}
+        />
 
-          <div className='flex flex-col items-start mt-2'>
-            <label htmlFor="bio" className='font-medium text-blue-text'>Linkedin</label>
-            <div
-              id="bio"
-              name="bio"
-              className='p-2 text-justify rounded-md text-md text-primary-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: '<a href="https://www.example.com" target="_blank">https://www.linkedin.com/in/pathumld/</a> '
-              }}
-            />
+        {bioEditing && (
+          <div className='flex items-center gap-6 mt-1 ml-auto'>
+            <HiCheck className='m-2 text-xl rounded-full hover:bg-green-600 hover:text-white' />
+            <HiX className='m-2 text-xl rounded-full hover:bg-red-600 hover:text-white' />
           </div>
+        )}
+      </div>
 
-          <div className='flex flex-col items-start mt-2'>
-            <label htmlFor="bio" className='font-medium text-blue-text'>Github</label>
-            <div
-              id="bio"
-              name="bio"
-              className='p-2 text-justify rounded-md text-md text-primary-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: '<a href="https://www.example.com" target="_blank">https://www.linkedin.com/in/pathumld/</a> '
-              }}
-            />
-          </div>
+      <div className='flex flex-col items-start mt-4 '>
+        <label htmlFor="linkedin" className='font-medium text-blue-text'>
+          Your Linkedin
+        </label>
+        <div
+          id="linkedin"
+          name="linkedin"
+          className='p-2 text-justify rounded-md text-md text-primary-text'
+          contentEditable={true}
+          onClick={() => handleEditStart('linkedin')}
+          onBlur={() => handleEditEnd('linkedin')}
+          dangerouslySetInnerHTML={{
+            __html:
+              'www.linkedin.com/PathumLD',
+          }}
+        />
 
-          <div className='flex flex-col items-start mt-2'>
-            <label htmlFor="bio" className='font-medium text-blue-text'>Personal Website</label>
-            <div
-              id="bio"
-              name="bio"
-              className='p-2 text-justify rounded-md text-md text-primary-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: 'https://www.linkedin.com/in/pathumld/ '
-              }}
-            />
+        {linkedinEditing && (
+          <div className='flex items-center gap-6 mt-1 ml-auto'>
+            <HiCheck className='m-2 text-xl rounded-full hover:bg-green-600 hover:text-white' />
+            <HiX className='m-2 text-xl rounded-full hover:bg-red-600 hover:text-white' />
           </div>
+        )}
+      </div>
+
+      <div className='flex flex-col items-start mt-4 '>
+        <label htmlFor="github" className='font-medium text-blue-text'>
+          Your Github
+        </label>
+        <div
+          id="github"
+          name="github"
+          className='p-2 text-justify rounded-md text-md text-primary-text'
+          contentEditable={true}
+          onClick={() => handleEditStart('github')}
+          onBlur={() => handleEditEnd('github')}
+          dangerouslySetInnerHTML={{
+            __html:
+              'github.io/PathumLD',
+          }}
+        />
+
+        {githubEditing && (
+          <div className='flex items-center gap-6 mt-1 ml-auto'>
+            <HiCheck className='m-2 text-xl rounded-full hover:bg-green-600 hover:text-white' />
+            <HiX className='m-2 text-xl rounded-full hover:bg-red-600 hover:text-white' />
+          </div>
+        )}
+      </div>
+
+      <div className='flex flex-col items-start mt-4 '>
+        <label htmlFor="website" className='font-medium text-blue-text'>
+          Your Website
+        </label>
+        <div
+          id="website"
+          name="website"
+          className='p-2 text-justify rounded-md text-md text-primary-text'
+          contentEditable={true}
+          onClick={() => handleEditStart('website')}
+          onBlur={() => handleEditEnd('website')}
+          dangerouslySetInnerHTML={{
+            __html:
+              'www.mywebsite.com',
+          }}
+        />
+
+        {websiteEditing && (
+          <div className='flex items-center gap-6 mt-1 ml-auto'>
+            <HiCheck className='m-2 text-xl rounded-full hover:bg-green-600 hover:text-white' />
+            <HiX className='m-2 text-xl rounded-full hover:bg-red-600 hover:text-white' />
+          </div>
+        )}
+      </div>
 
         
         
@@ -83,14 +195,20 @@ const CandidateProfileInfo = () => {
       <div className='mx-4 my-6'>
         <div className='flex justify-between mt-4'>
           <h3 className='text-xl font-bold text-primary-text'>Education</h3>
-          <button className='hover:'><FaPlus /></button>
+          <button className='p-1 text-xl rounded-full hover:ring-2' onClick={openPopup}><FaPlus /></button>
+          <AddPopup isOpen={isPopupOpen} onClose={closePopup}>
+            <div className='z-50 flex items-center justify-center gap-6 mx-auto '>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Candidate</button>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Company</button>
+            </div>
+          </AddPopup>
         </div>
           
-          <div
+          {/* <div
               id="bio"
               name="bio"
               className='mt-4 font-semibold text-left rounded-md text-md text-blue-text'
-              contentEditable={true}
+              contentEditable={false}
               dangerouslySetInnerHTML={{
                 __html: ' BSc. Information Systems ' 
               }}
@@ -104,27 +222,16 @@ const CandidateProfileInfo = () => {
               dangerouslySetInnerHTML={{
                 __html: ' University of Colombo School of Computing '
               }}
-          />
+          /> */}
 
-          <div
-              id="bio"
-              name="bio"
-              className='mt-4 font-semibold text-left rounded-md text-md text-blue-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' MSc. Computer Science '
-              }}
-          />
-                
-          <div
-              id="bio"
-              name="bio"
-              className='ml-4 font-semibold text-left rounded-md text-md text-black/50'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' University of Colombo School of Computing '
-              }}
-          />
+          <div className='flex justify-between '>
+            <div className=''>
+              <h3 className='mt-4 font-semibold text-left rounded-md text-md text-blue-text'>BSc. Information Systems</h3>
+              <h3 className='ml-4 font-semibold text-left rounded-md text-md text-black/50'>University of Colombo School of Computing</h3>
+            </div>
+            <FiEdit3 className='mt-8 text-xl rounded-full text-black/50 hover:ring-2 ring-offset-2 ring-blue-text/75 hover:text-blue-text'/>
+          </div>
+
       </div>
     </div>
 
@@ -134,48 +241,22 @@ const CandidateProfileInfo = () => {
       <div className='mx-4 my-6'>
         <div className='flex justify-between mt-4'>
           <h3 className='text-xl font-bold text-primary-text'>Working Experience</h3>
-          <button className='hover:'><FaPlus /></button>
+          <button className='p-1 text-xl rounded-full hover:ring-2' onClick={openPopup}><FaPlus /></button>
+          <AddPopup isOpen={isPopupOpen} onClose={closePopup}>
+            <div className='z-50 flex items-center justify-center gap-6 mx-auto '>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Candidate</button>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Company</button>
+            </div>
+          </AddPopup>
         </div>
           
-          <div
-              id="bio"
-              name="bio"
-              className='mt-4 font-semibold text-justify rounded-md text-md text-blue-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Intern Software Engineer (2022 - 2023) ' 
-              }}
-          />
-      
-          <div
-              id="bio"
-              name="bio"
-              className='ml-4 font-semibold text-justify rounded-md text-md text-black/50'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Boffo System Labs '
-              }}
-          />
-
-          <div
-              id="bio"
-              name="bio"
-              className='mt-4 font-semibold text-justify rounded-md text-md text-blue-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Asociate Software Engineer (2023 - Present) '
-              }}
-          />
-                
-          <div
-              id="bio"
-              name="bio"
-              className='ml-4 font-semibold text-justify rounded-md text-md text-black/50'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Boffo System Labs '
-              }}
-          />
+        <div className='flex justify-between '>
+            <div className=''>
+              <h3 className='mt-4 font-semibold text-left rounded-md text-md text-blue-text'>Intern Software Engineer (2022 - 2023)</h3>
+              <h3 className='ml-4 font-semibold text-left rounded-md text-md text-black/50'>Boffo System Labs</h3>
+            </div>
+            <FiEdit3 className='mt-8 text-xl rounded-full text-black/50 hover:ring-2 ring-offset-2 ring-blue-text/75 hover:text-blue-text'/>
+          </div>
       </div>
     </div>
     
@@ -185,38 +266,23 @@ const CandidateProfileInfo = () => {
       <div className='mx-4 my-6'>
         <div className='flex justify-between mt-4'>
           <h3 className='text-xl font-bold text-primary-text'>Projects</h3>
-          <button className='hover:'><FaPlus /></button>
+          <button className='p-1 text-xl rounded-full hover:ring-2' onClick={openPopup}><FaPlus /></button>
+          <AddPopup isOpen={isPopupOpen} onClose={closePopup}>
+            <div className='z-50 flex items-center justify-center gap-6 mx-auto '>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Candidate</button>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Company</button>
+            </div>
+          </AddPopup>
         </div>
           
-          <div
-              id="bio"
-              name="bio"
-              className='mt-4 text-lg font-semibold text-justify rounded-md text-blue-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Resume Management System ' 
-              }}
-          />
-
-          <div
-              id="bio"
-              name="bio"
-              className='ml-4 italic font-semibold text-left rounded-md text-md text-black/50'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' ReactJS | NodeJS | ExpressJS | MongoDB | TailwindCSS '
-              }}
-          />
-      
-          <div
-              id="bio"
-              name="bio"
-              className='mt-1 ml-4 text-sm text-justify rounded-md font-regular text-primary-text'
-              contentEditable={true}
-              dangerouslySetInnerHTML={{
-                __html: ' Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium '
-              }}
-          />
+        <div className='flex justify-between '>
+            <div className=''>
+              <h3 className='mt-4 font-semibold text-left rounded-md text-md text-blue-text'>TalentFolio (Resume Management System)</h3>
+              <h3 className='ml-4 font-semibold text-left rounded-md text-md text-black/50'>ReactJS | NodeJS | ExpressJS | MongoDB | TailwindCSS</h3>
+              <h3 className='ml-4 font-medium text-justify w-[32.5rem] text-md text-primary-text'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia, molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborumnumquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium</h3>
+            </div>
+            <FiEdit3 className='mt-8 text-xl rounded-full text-black/50 hover:ring-2 ring-offset-2 ring-blue-text/75 hover:text-blue-text'/>
+          </div>
       </div>
     </div>
 
@@ -226,7 +292,13 @@ const CandidateProfileInfo = () => {
       <div className='mx-4 my-6'>
         <div className='flex justify-between mt-4'>
           <h3 className='text-xl font-bold text-primary-text'>Skills</h3>
-          <button className='hover:'><FaPlus /></button>
+          <button className='p-1 text-xl rounded-full hover:ring-2' onClick={openPopup}><FaPlus /></button>
+          <AddPopup isOpen={isPopupOpen} onClose={closePopup}>
+            <div className='z-50 flex items-center justify-center gap-6 mx-auto '>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Candidate</button>
+              <button className='px-4 py-3 font-medium text-white rounded-xl hover:opacity-85 bg-blue' >Company</button>
+            </div>
+          </AddPopup>
         </div>
           
           <div className='flex flex-wrap gap-x-8 sm:gap-x-40 sm:gap-y-10 gap-y-4'>
