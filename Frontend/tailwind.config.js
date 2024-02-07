@@ -9,7 +9,9 @@ export default {
       colors: {
         "primary-text" : "#313131",
         "blue" : "#2400FF",
+        "blue-text" : "#000050",
         "background" : "#5F5FFF",
+        "subheading" : "#5869FC",
       }
     },
     // borderRadius: {

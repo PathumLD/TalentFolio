@@ -6,9 +6,10 @@ import {
     FiBox,
     FiCalendar,
     FiCheckCircle,
-    FiDivideSquare,
     FiDollarSign,
     FiMessageCircle,
+    FiPlusCircle,
+    FiGrid,
     FiPhone,
     FiUsers
 } from 'react-icons/fi'
@@ -18,38 +19,38 @@ export const CandidateSidebarNavigation = [
     {
         key: 'dashboard',
         label: 'Dashboard',
-        path: '/candidate-dashboard',
+        path: '/candidate',
         icon: <FiAirplay />
     },
     {
         key: 'profile',
         label: 'Profile',
-        path: '/candidate-profile',
+        path: '/candidate/profile',
         icon: <FiUser />
     },
     {
-        key: 'applied-vacancies',
+        key: 'applied/vacancies',
         label: 'Applied Vacancies',
         path: '/applied-vacancies',
-        icon: <FiPhone />
+        icon: <FiCheckCircle />
     },
     {
         key: 'interviews',
         label: ' Interviews',
-        path: '/candidate-interviews',
-        icon: <FiCheckCircle />
+        path: '/candidate/interviews',
+        icon: <FiCalendar />
     },
     {
         key: 'all-vacancies',
         label: 'All Vacancies',
         path: '/candidate/all-vacancies',
-        icon: <FiCalendar />
+        icon: <FiPlusCircle />
     },
     {
         key: 'events',
         label: 'Events',
-        path: '/counsellor/wallet',
-        icon: <FiDollarSign />
+        path: '/counsellor/events',
+        icon: <FiGrid />
     },
     
 ]

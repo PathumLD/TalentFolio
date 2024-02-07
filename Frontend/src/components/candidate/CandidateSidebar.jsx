@@ -19,7 +19,7 @@ const CandidateSidebar = () => {
       <div className="flex max-sm:toggleSidebar">
       <div className={`bg-white  h-screen pl-5  pt-1 flex flex-col text-blue overflow-hidden ${open ?  "w-60 sm:w-72" : "w-20"} duration-300 relative `}>
 
-        <div className='inline-flex items-center gap-2 px-1 py-3 '>
+        <div className='inline-flex items-center gap-2 px-1 py-4 '>
           <img
                 src={react}
                 alt="Logo"
@@ -27,7 +27,7 @@ const CandidateSidebar = () => {
                 duration-500 ${open && "rotate-[360deg] "}`}
                 onClick={toggleSidebar}
           />
-          <h1 className={`text-blue-900 origin-left font-bold text-2xl cursor-pointer duration-300 ${!open && "scale-0"}`} onClick={toggleSidebar} >
+          <h1 className={`text-blue-text origin-left font-bold text-2xl cursor-pointer duration-300 ${!open && "scale-0"}`} onClick={toggleSidebar} >
             TalentFolio
           </h1>
         </div>
