@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import {CandidateSidebarNavigation} from '../../Data/CandidateSidebarNavigation';
-import react from '../../assets/react.svg';
+import {CandidateSidebarNavigation} from '../../../Data/CandidateSidebarNavigation';
+import react from '../../../assets/react.svg';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames'
 

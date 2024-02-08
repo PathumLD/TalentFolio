@@ -1,6 +1,6 @@
 import React from 'react';
-import CandidateProfileInfo from '../../components/candidate/CandidateProfileInfo';
-import CandidateResume from '../../components/candidate/CandidateResume';
+import CandidateProfileInfo from '../../components/candidate/profile/CandidateProfileInfo';
+import CandidateResume from '../../components/candidate/profile/CandidateResume';
 
 const CandidateProfile = () => {
   return (

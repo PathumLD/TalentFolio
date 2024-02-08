@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import dp from '../../assets/dp.jpg';
+import dp from '../../../assets/dp.jpg';
 import { FaPlus } from 'react-icons/fa';
 import { HiCheck,HiX } from "react-icons/hi";
-import AddPopup from './AddPopup';
+import AddPopup from '../AddPopup';
 import { FiEdit3 } from "react-icons/fi";
 
 const CandidateProfileInfo = () => {

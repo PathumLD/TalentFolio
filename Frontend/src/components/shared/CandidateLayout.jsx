@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import CandidateNavbar from '../candidate/CandidateNavbar';
-import CandidateSidebar from '../candidate/CandidateSidebar';
+import CandidateNavbar from '../candidate/common/CandidateNavbar';
+import CandidateSidebar from '../candidate/common/CandidateSidebar';
 import { Outlet } from 'react-router-dom';
 
 const CandidateLayout = ({ children }) => {

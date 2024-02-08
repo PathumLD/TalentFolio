@@ -1,7 +1,7 @@
 import { Fragment, useState } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { BellIcon } from '@heroicons/react/24/outline'
-import dp from '../../assets/dp.jpg'
+import dp from '../../../assets/dp.jpg'
 import { FaBars } from "react-icons/fa";
 
 

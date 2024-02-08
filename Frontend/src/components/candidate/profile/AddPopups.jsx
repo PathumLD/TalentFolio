@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import { FaPlus } from 'react-icons/fa';
-import { HiCheck, HiX } from 'react-icons/hi';
 
 const CandidateProfileInfo = () => {
   const [eduPopup, setEduPopup] = useState(false);

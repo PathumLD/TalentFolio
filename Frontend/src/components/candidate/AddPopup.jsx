@@ -24,4 +24,4 @@ const AddPopup = ({ isOpen, onClose, children }) => {
   )
 }
 
-export default AddPopup
+export default AddPopup;
