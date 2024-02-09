@@ -23,12 +23,12 @@ const CandidateAppliedVacancies = () => {
                 <tr
                   className="transition duration-300 ease-in-out text-primary-text">
                   <td className="px-6 py-4 font-medium whitespace-nowrap">1</td>
-                  <td className="px-6 py-4 whitespace-nowrap">Mark</td>
-                  <td className="px-6 py-4 whitespace-nowrap">Otto</td>
-                  <td className="px-6 py-4 whitespace-nowrap">@mdo</td>
-                  <td className="px-6 py-4 whitespace-nowrap">@mdo</td>
+                  <td className="px-6 py-4 whitespace-nowrap">Boffo Labs</td>
+                  <td className="px-6 py-4 whitespace-nowrap">Software Engineer</td>
+                  <td className="px-6 py-4 whitespace-nowrap">PLD_SE</td>
+                  <td className="px-6 py-4 whitespace-nowrap">Downloaded</td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    <button className="px-4 py-1 font-medium border rounded-xl hover:border-blue">Apply</button>
+                    <button className="px-4 py-1 font-medium border rounded-xl hover:border-red-500">Cancel Application</button>
                     
                   </td>
                 </tr>
