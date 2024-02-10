@@ -9,7 +9,7 @@ import CandidateDashboard from '../pages/candidate/CandidateDashboard';
 import CandidateAppliedVacancies from '../pages/candidate/CandidateAppliedVacancies';
 import CandidateInteviews from '../pages/candidate/CandidateInteviews';
 import CandidateAllVacancies from '../pages/candidate/CandidateAllVacancies';
-import CandidateEvents from '../pages/candidate/CandidateEvents';
+import CandidateCompanies from '../pages/candidate/CandidateCompanies';
 
 const Router = () => {
   return (
@@ -25,7 +25,7 @@ const Router = () => {
         <Route path="applied-vacancies" element={<CandidateAppliedVacancies />} />
         <Route path="interviews" element={<CandidateInteviews />} />
         <Route path="all-vacancies" element={<CandidateAllVacancies />} />
-        <Route path="events" element={<CandidateEvents />} />
+        <Route path="companies" element={<CandidateCompanies />} />
       </Route>
     </Routes>
   );

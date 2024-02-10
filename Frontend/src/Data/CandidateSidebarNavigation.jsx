@@ -47,9 +47,9 @@ export const CandidateSidebarNavigation = [
         icon: <FiPlusCircle />
     },
     {
-        key: 'events',
-        label: 'Events',
-        path: '/candidate/events',
+        key: 'companies',
+        label: 'Companies',
+        path: '/candidate/companies',
         icon: <FiGrid />
     },
     

@@ -15,7 +15,7 @@ const DetailsCard = () => {
                 </h5>
                 <h1 className='text-2xl font-semibold text-center lg:text-3xl'>
                     20
-                </h1>
+                </h1> 
             </div>
             
             <div className="p-4 bg-gray-200 rounded-lg ">
