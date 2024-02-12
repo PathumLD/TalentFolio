@@ -22,7 +22,7 @@ const CompanyEvents = () => {
     <>
      <div className="container px-4 mx-auto">
       {/* ... other components */}
-      <section className="grid grid-cols-1 gap-8 mt-10 md:grid-cols-4 lg:grid-cols-6">
+      <section className="grid grid-cols-1 gap-8 mt-10 sm:grid-cols-2 md:grid-cols-4 xl:grid-cols-6">
         {EventList.map((CompanyEvents) => (
           <EventCard key={CompanyEvents.id} CompanyEvents={CompanyEvents} />
         ))}
