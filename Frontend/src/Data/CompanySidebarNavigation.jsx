@@ -35,12 +35,12 @@ export const CompanySidebarNavigation = [
         path: '/company/interviews',
         icon: <FiCalendar />
     },
-    {
-        key: 'all-vacancies',
-        label: 'All Vacancies',
-        path: '/company/all-vacancies',
-        icon: <FiPlusCircle />
-    },
+    // {
+    //     key: 'all-vacancies',
+    //     label: 'All Vacancies',
+    //     path: '/company/all-vacancies',
+    //     icon: <FiPlusCircle />
+    // },
     {
         key: 'events',
         label: 'Events',
