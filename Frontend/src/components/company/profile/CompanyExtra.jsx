@@ -23,7 +23,7 @@ const CompanyExtra = () => {
                 <td className="px-4 py-2 text-gray-700 whitespace-nowrap">John Doe</td>
                 <td className="px-4 py-2 text-gray-700 whitespace-nowrap">20</td>
                 <td className="px-4 py-2 text-gray-700 whitespace-nowrap">
-                    <button className='p-2 text-red-500 border hover:border-red-500 rounded-3xl hover:text-red-500 hover:bg-transparent'>Block Applications</button>
+                    <button className='p-2 font-medium text-red-500 border hover:border-red-500 rounded-3xl hover:text-red-500 hover:bg-transparent'>Block Applications</button>
                 </td>
             </tr>
 
