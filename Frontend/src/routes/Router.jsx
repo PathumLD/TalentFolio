@@ -17,6 +17,11 @@ import CompanyTalentPool from '../pages/company/CompanyTalentPool';
 import CompanyAllVacancies from '../pages/company/CompanyAllVacancies'; 
 import CompanyEvents from '../pages/company/CompanyEvents';
 import CompanyInterviews from '../pages/company/CompanyInterviews';
+import AdminLayout from '../components/shared/AdminLayout';
+import AdminDashboard from '../pages/admin/AdminDashboard';
+import AdminAnalytics from '../pages/admin/AdminAnalytics';
+import AdminAllVacancies from '../pages/admin/AdminAllVacancies';
+import AdminEvents from '../pages/admin/AdminEvents';
 
 const Router = () => {
   return (
@@ -24,6 +29,14 @@ const Router = () => {
       <Route path="/" element={<LandingPage />} />
       <Route path="/login" element={<SignIn />} />
       <Route path="/candidate-register" element={<CandidateSignUp />} />
+
+      {/* Admin */}
+      <Route path="/admin" element={<AdminLayout />}>
+        <Route index element={<AdminDashboard />} />
+        <Route path="analytics" element={<AdminAnalytics />} />
+        <Route path="all-vacancies" element={<AdminAllVacancies />} />
+        <Route path="events" element={<AdminEvents />} />
+      </Route>
 
       {/* Candidate */}
       <Route path="/candidate" element={<CandidateLayout />}>

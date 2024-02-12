@@ -39,7 +39,7 @@ export const AdminSidebarNavigation = [
     {
         key: 'events',
         label: 'Events',
-        path: '/company/events',
+        path: '/admin/events',
         icon: <FiFlag />
     },
 

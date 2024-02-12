@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AdminDashboard = () => {
+const AdminAnalytics = () => {
   return (
     <div>
       
@@ -8,4 +8,4 @@ const AdminDashboard = () => {
   )
 }
 
-export default AdminDashboard
+export default AdminAnalytics
