@@ -13,17 +13,17 @@ const CandidateLayout = ({ children }) => {
   
   return (
     <div className="flex flex-row w-screen h-screen sm:flex-row ">
-    <span className='max-sm:hidden hover:flex-auto'>
-    {/* <CandidateSidebar mobileSidebarOpen={mobileSidebarOpen}/> */}
-    <CandidateSidebar />
-    </span>
-    <div className="flex flex-col w-full h-screen ">
-      {/* <CandidateNavbar toggleMobileSidebar={toggleMobileSidebar}/> */}
-      <CandidateNavbar />
-      {children}
-      <div className="grid h-full min-h-0 p-4 overflow-auto grid-col-6">{<Outlet />}</div>
+      <span className='max-sm:hidden hover:flex-auto'>
+      {/* <CandidateSidebar mobileSidebarOpen={mobileSidebarOpen}/> */}
+      <CandidateSidebar />
+      </span>
+      <div className="flex flex-col w-full h-screen ">
+        {/* <CandidateNavbar toggleMobileSidebar={toggleMobileSidebar}/> */}
+        <CandidateNavbar />
+        {children}
+        <div className="grid h-full min-h-0 p-4 overflow-auto grid-col-6">{<Outlet />}</div>
+      </div>
     </div>
-  </div>
   );
 };
 

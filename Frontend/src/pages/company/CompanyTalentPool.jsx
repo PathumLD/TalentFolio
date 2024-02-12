@@ -11,7 +11,7 @@ function TalentCard({ talents }) {
     >
       <img src={talents.logo} alt={talents.name} className="w-full h-32 rounded-t-xl" />
       <div className="flex flex-col">
-        <h3 className="my-4 text-lg text-gray-800 font-base">{talents.name}</h3>
+        <h3 className="my-4 text-lg font-semibold text-gray-800">{talents.name}</h3>
       </div>
     </button>
   );

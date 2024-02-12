@@ -11,6 +11,7 @@ import {
     FiPlusCircle,
     FiGrid,
     FiPhone,
+    FiFlag,
     FiUsers
 } from 'react-icons/fi'
 
@@ -51,6 +52,12 @@ export const CandidateSidebarNavigation = [
         label: 'Companies',
         path: '/candidate/companies',
         icon: <FiGrid />
+    },
+    {
+        key: 'events',
+        label: 'Events',
+        path: '/company/events',
+        icon: <FiFlag />
     },
     
 ]
