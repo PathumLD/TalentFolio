@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import CandidateNavbar from '../candidate/common/CandidateNavbar';
-import CandidateSidebar from '../candidate/common/CandidateSidebar';
+import CompanyNavbar from '../company/common/CompanyNavbar';
+import CompanySidebar from '../company/common/CompanySidebar';
 import { Outlet } from 'react-router-dom';
 
-const CandidateLayout = ({ children }) => {
+const CompanyLayout = ({ children }) => {
   // const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   // const toggleMobileSidebar = () => {
@@ -14,12 +14,12 @@ const CandidateLayout = ({ children }) => {
   return (
     <div className="flex flex-row w-screen h-screen sm:flex-row ">
     <span className='max-sm:hidden hover:flex-auto'>
-    {/* <CandidateSidebar mobileSidebarOpen={mobileSidebarOpen}/> */}
-    <CandidateSidebar />
+    {/* <CompanySidebar mobileSidebarOpen={mobileSidebarOpen}/> */}
+    <CompanySidebar />
     </span>
     <div className="flex flex-col w-full h-screen ">
-      {/* <CandidateNavbar toggleMobileSidebar={toggleMobileSidebar}/> */}
-      <CandidateNavbar />
+      {/* <CompanyNavbar toggleMobileSidebar={toggleMobileSidebar}/> */}
+      <CompanyNavbar />
       {children}
       <div className="grid h-full min-h-0 p-4 overflow-auto grid-col-6">{<Outlet />}</div>
     </div>
@@ -27,4 +27,4 @@ const CandidateLayout = ({ children }) => {
   );
 };
 
-export default CandidateLayout;
+export default CompanyLayout;

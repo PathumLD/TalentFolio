@@ -10,49 +10,48 @@ import {
     FiMessageCircle,
     FiPlusCircle,
     FiGrid,
+    FiFlag,
     FiPhone,
     FiUsers
 } from 'react-icons/fi'
 
-export const CandidateSidebarNavigation = [
+export const CompanySidebarNavigation = [
 
     {
         key: 'dashboard',
         label: 'Dashboard',
-        path: '/candidate',
+        path: '/company',
         icon: <FiAirplay />
     },
     {
         key: 'profile',
         label: 'Profile',
-        path: '/candidate/profile',
+        path: '/company/profile',
         icon: <FiUser />
-    },
-    {
-        key: 'applied-vacancies',
-        label: 'Applied Vacancies',
-        path: '/candidate/applied-vacancies',
-        icon: <FiCheckCircle />
     },
     {
         key: 'interviews',
         label: ' Interviews',
-        path: '/candidate/interviews',
+        path: '/company/interviews',
         icon: <FiCalendar />
     },
     {
         key: 'all-vacancies',
         label: 'All Vacancies',
-        path: '/candidate/all-vacancies',
+        path: '/company/all-vacancies',
         icon: <FiPlusCircle />
     },
     {
-        key: 'companies',
-        label: 'Companies',
-        path: '/candidate/companies',
-        icon: <FiGrid />
+        key: 'events',
+        label: 'Events',
+        path: '/company/events',
+        icon: <FiFlag />
     },
-    
+    {
+        key: 'talent-pool',
+        label: 'Talent Pool',
+        path: '/company/talent-pool',
+        icon: <FiBookOpen />
+    },
+
 ]
-
-

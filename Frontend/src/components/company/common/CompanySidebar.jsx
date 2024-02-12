@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import {CandidateSidebarNavigation} from '../../../Data/CandidateSidebarNavigation';
+import {CompanySidebarNavigation} from '../../../Data/CompanySidebarNavigation';
 import react from '../../../assets/react.svg';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames'
 
 const linkClasses = 'flex items-center gap-2 px-3 py-2 hover:bg-blue-400 hover:no-underline active:bg-blue-700 rounded-md text-lg'
 
-const CandidateSidebar = ({ mobileSidebarOpen }) => {
+const CompanySidebar = ({ mobileSidebarOpen }) => {
 
   const [open, setOpen] = useState(true);
 
@@ -34,7 +34,7 @@ const CandidateSidebar = ({ mobileSidebarOpen }) => {
 
         <div className='flex flex-col justify-center flex-1 overflow-hidden sm:mt-20 '>
           <div className='flex flex-col flex-1 gap-1 py-10 mt-10 overflow-hidden '>
-              {CandidateSidebarNavigation.map((item) => (
+              {CompanySidebarNavigation.map((item) => (
                 <SidebarLink key={item.key} item={item} isOpen={open}/>
               ))}
           </div>
@@ -67,4 +67,4 @@ function SidebarLink({ item, isOpen }){
   )
 }
 
-export default CandidateSidebar
+export default CompanySidebar

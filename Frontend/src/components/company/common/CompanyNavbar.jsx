@@ -12,7 +12,7 @@ function classNames(...classes) {
   
    
 
-const CandidateNavbar = () => {
+const CompanyNavbar = () => {
   
 
 
@@ -103,4 +103,4 @@ const CandidateNavbar = () => {
   )
 }
 
-export default CandidateNavbar
+export default CompanyNavbar

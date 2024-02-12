@@ -10,6 +10,13 @@ import CandidateAppliedVacancies from '../pages/candidate/CandidateAppliedVacanc
 import CandidateInteviews from '../pages/candidate/CandidateInteviews';
 import CandidateAllVacancies from '../pages/candidate/CandidateAllVacancies';
 import CandidateCompanies from '../pages/candidate/CandidateCompanies';
+import CompanyLayout from '../components/shared/CompanyLayout';
+import CompanyDashboard from '../pages/company/CompanyDashboard';
+import CompanyProfile from '../pages/company/CompanyProfile';
+import CompanyTalentPool from '../pages/company/CompanyTalentPool';
+import CompanyAllVacancies from '../pages/company/CompanyAllVacancies'; 
+import CompanyEvents from '../pages/company/CompanyEvents';
+import CompanyInterviews from '../pages/company/CompanyInterviews';
 
 const Router = () => {
   return (
@@ -27,6 +34,17 @@ const Router = () => {
         <Route path="all-vacancies" element={<CandidateAllVacancies />} />
         <Route path="companies" element={<CandidateCompanies />} />
       </Route>
+
+        {/* Company */}
+      <Route path="/company" element={<CompanyLayout />}>
+        <Route index element={<CompanyDashboard />} />
+        <Route path="profile" element={<CompanyProfile />} />
+        <Route path="interviews" element={<CompanyInterviews />} />
+        <Route path="all-vacancies" element={<CompanyAllVacancies />} />
+        <Route path="events" element={<CompanyEvents />} />
+        <Route path="talent-pool" element={<CompanyTalentPool />} />
+      </Route>
+
     </Routes>
   );
 };
