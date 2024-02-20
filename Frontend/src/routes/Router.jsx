@@ -22,6 +22,7 @@ import AdminDashboard from '../pages/admin/AdminDashboard';
 import AdminAnalytics from '../pages/admin/AdminAnalytics';
 import AdminAllVacancies from '../pages/admin/AdminAllVacancies';
 import AdminEvents from '../pages/admin/AdminEvents';
+import CandidateEvents from '../pages/candidate/CandidateEvents';
 
 const Router = () => {
   return (
@@ -46,6 +47,7 @@ const Router = () => {
         <Route path="interviews" element={<CandidateInteviews />} />
         <Route path="all-vacancies" element={<CandidateAllVacancies />} />
         <Route path="companies" element={<CandidateCompanies />} />
+        <Route path="events" element={<CandidateEvents />} />
       </Route>
 
         {/* Company */}

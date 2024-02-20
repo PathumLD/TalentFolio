@@ -56,7 +56,7 @@ export const CandidateSidebarNavigation = [
     {
         key: 'events',
         label: 'Events',
-        path: '/company/events',
+        path: '/candidate/events',
         icon: <FiFlag />
     },
     

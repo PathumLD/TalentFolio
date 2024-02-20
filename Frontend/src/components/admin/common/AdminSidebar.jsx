@@ -62,7 +62,7 @@ function SidebarLink({ item, isOpen }){
       }`}
     >
       <span className='text-xl'>{item.icon}</span>
-      <span className={`text-base md:text-2xl xl:text-base flex-2 duration-200  py-2`}>{isOpen && item.label}</span>
+      <span className={`text-base  flex-2 duration-200  py-2`}>{isOpen && item.label}</span>
     </Link>
   )
 }
