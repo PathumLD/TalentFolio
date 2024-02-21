@@ -17,16 +17,16 @@ import {
 
 export const CompanySidebarNavigation = [
 
-    {
-        key: 'dashboard',
-        label: 'Dashboard',
-        path: '/company',
-        icon: <FiAirplay />
-    },
+    // {
+    //     key: 'dashboard',
+    //     label: 'Dashboard',
+    //     path: '/company',
+    //     icon: <FiAirplay />
+    // },
     {
         key: 'profile',
         label: 'Profile',
-        path: '/company/profile',
+        path: '/company',
         icon: <FiUser />
     },
     {

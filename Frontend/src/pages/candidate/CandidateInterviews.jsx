@@ -3,7 +3,7 @@ import AppointmentCalendar from '../../components/candidate/interview/Calendar'
 
 
 
-const CandidateInteviews = () => {
+const CandidateInterviews = () => {
   return (
     <div className='w-full '>
       <AppointmentCalendar />
@@ -11,4 +11,4 @@ const CandidateInteviews = () => {
   )
 }
 
-export default CandidateInteviews
+export default CandidateInterviews

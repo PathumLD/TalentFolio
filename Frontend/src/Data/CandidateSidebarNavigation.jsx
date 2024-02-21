@@ -17,16 +17,16 @@ import {
 
 export const CandidateSidebarNavigation = [
 
-    {
-        key: 'dashboard',
-        label: 'Dashboard',
-        path: '/candidate',
-        icon: <FiAirplay />
-    },
+    // {
+    //     key: 'dashboard',
+    //     label: 'Dashboard',
+    //     path: '/candidate',
+    //     icon: <FiAirplay />
+    // },
     {
         key: 'profile',
         label: 'Profile',
-        path: '/candidate/profile',
+        path: '/candidate',
         icon: <FiUser />
     },
     {

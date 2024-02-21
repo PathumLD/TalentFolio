@@ -19,7 +19,7 @@ const candidateAuth = async (req, res, next) => {
         
     } catch (error) {
         console.log(error);
-        next("Authentication Failed");
+        return next("Authentication Failed");
     }
 }
 
