@@ -3,6 +3,7 @@ import Jobs from "../models/jobsModel.js";
 import Companies from "../models/companyModel.js";
 
 
+  //Create Job
 export const createJob = async (req, res, next) => {
     try {
       const {
@@ -64,9 +65,10 @@ export const createJob = async (req, res, next) => {
       console.log(error);
       res.status(404).json({ message: error.message });
     }
-  };
+};
 
 
+    //Update Job
 export const updateJob = async (req, res) => {
     try {
         const {
@@ -122,6 +124,7 @@ export const updateJob = async (req, res) => {
 };
 
 
+  //Get Job Posts
 export const getJobPosts = async (req, res) => {
     try {
         const { search, sort, location, jtype, exp } = req.query;
@@ -201,9 +204,10 @@ export const getJobPosts = async (req, res) => {
         console.log(error);
         res.status(404).json({message: error.message});
     }
-}
+};
 
 
+  //Get Job
 export const getJobById = async (req, res, next) => {
     try {
       const { id } = req.params;
@@ -247,23 +251,24 @@ export const getJobById = async (req, res, next) => {
       console.log(error);
       res.status(404).json({ message: error.message });
     }
-  };
+};
 
 
-  export const deleteJobPost = async (req, res, next) => {
-    try {
-      const { id } = req.params;
-  
-      await Jobs.findByIdAndDelete(id);
-  
-      res.status(200).send({
-        success: true,
-        messsage: "Job Post Delted Successfully.",
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(404).json({ message: error.message });
-    }
-  };
+  //Delete Job Post
+export const deleteJobPost = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+
+    await Jobs.findByIdAndDelete(id);
+
+    res.status(200).send({
+      success: true,
+      message: "Job Post Deleted Successfully.",
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({ message: error.message });
+  }
+};
 
 

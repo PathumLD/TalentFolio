@@ -1,53 +1,65 @@
 import mongoose from "mongoose";
-import Candidates from "../models/candidateModel.js";
+import Users from "../models/usersModel.js";
 
 
     //Update Candidate
-export const updateCandidate = async (req, res, next) => {
+export const updateUser = async (req, res, next) => {
     const {
         firstname,
         lastname,
         email,
+        bio,
         contact,
-        location,
-        profileUrl,
+        address,
+        linkedin,
+        github,
+        website,
+        workplace,
+        degree,
+        university,
+        profileImage,
         jobTitle,
-        about,
       } = req.body;
     
       try {
-        if (!firstname || !lastname || !email || !contact || !jobTitle || !about) {
-          next("Please provide all required fields");
-        }
+        // if (!firstname || !lastname || !email || !contact || !jobTitle || !about) {
+        //   next("Please provide all required fields");
+        // }
     
-        const id = req.body.candidate.candidateId;
+        const id = req.body.user.userId;
     
         if (!mongoose.Types.ObjectId.isValid(id)) {
-          return res.status(404).send(`No Candidate with id: ${id}`);
+          return res.status(404).send(`No user with id: ${id}`);
         }
     
-        const updateCandidate = {
-          firstname,
-          lastname,
-          email,
-          contact,
-          location,
-          profileUrl,
-          jobTitle,
-          about,
+        const updateUser = {
+            firstname,
+            lastname,
+            email,
+            bio,
+            contact,
+            address,
+            linkedin,
+            github,
+            website,
+            workplace,
+            degree,
+            university,
+            profileImage,
+            jobTitle,
           _id: id,
         };
     
-        const candidate = await Candidates.findByIdAndUpdate(id, updateCandidate, { new: true });
+        const user = await Users.findByIdAndUpdate(id, updateUser, { new: true });
     
-        const token = candidate.createJWT();
+        const token = user.createJWT();
     
-        candidate.password = undefined;
+        user.password = undefined;
     
         res.status(200).json({
-          sucess: true,
-          message: "Candidate updated successfully",
-          candidate,
+          success: true,
+          message: "User updated successfully",
+          user,
           token,
         });
       } catch (error) {
@@ -59,26 +71,26 @@ export const updateCandidate = async (req, res, next) => {
 
 
     //Get Candidate
-export const getCandidate = async (req, res, next) => {
+export const getUser = async (req, res, next) => {
 
     try {
         
-        const id = req.body.candidate.candidateId;
+        const id = req.body.user.userId;
 
-        const candidate = await Candidates.findById({_id:id});
+        const user = await Users.findById({_id:id});
 
-        if(!candidate) {
+        if(!user) {
             return res.status(404).send({
                 success: false,
-                message: "Candidate not found",
+                message: "user not found",
             });
         }
 
-        candidate.password = undefined;
+        user.password = undefined;
         res.status(200.).send({
             success: true,
-            candidate: candidate,
-            message: "Candidate fetched successfully",
+            user: user,
+            message: "User fetched successfully",
         });
 
     } catch (error) {
@@ -94,14 +106,14 @@ export const getCandidate = async (req, res, next) => {
 
 
     //Delete Candidate
-export const deleteCandidate = async (req, res, next) => {
+export const deleteUser = async (req, res, next) => {
     const {status} = req.body;
 
     try {
-        const id = req.body.candidate.candidateId;
+        const id = req.body.user.userId;
 
         if (!mongoose.Types.ObjectId.isValid(id)) {
-            return res.status(404).send(`No Candidate with id: ${id}`);
+            return res.status(404).send(`No user with id: ${id}`);
         }
 
         const deleteUser = {
@@ -109,13 +121,13 @@ export const deleteCandidate = async (req, res, next) => {
             _id: id,
         };
 
-        const candidate = await Candidates.findByIdAndUpdate(id, deleteUser, { new: true });
-        const token = candidate.createJWT();
-        candidate.password = undefined;
+        const user = await Users.findByIdAndUpdate(id, deleteUser, { new: true });
+        const token = user.createJWT();
+        user.password = undefined;
         res.status(200).send({
             success: true,
-            message: "Candidate deleted successfully",
-            candidate,
+            message: "User deleted successfully",
+            user,
             token,
         });
 
@@ -132,7 +144,7 @@ export const deleteCandidate = async (req, res, next) => {
 
 
     //Get All Candidates
-export const getAllCandidates = async (req, res, next) => {
+export const getAllUsers = async (req, res, next) => {
     try {
         
         const {search, sort,jobTitle, jobType} = req.query;
@@ -150,7 +162,7 @@ export const getAllCandidates = async (req, res, next) => {
             queryObject.jobType = { $regex: jobType, $options: "i" };
         }
 
-        let queryResult = Candidates.find(queryObject).select("-password");
+        let queryResult = Users.find(queryObject).select("-password");
 
         //Sorting
         if (sort === "Newest") {
@@ -172,7 +184,7 @@ export const getAllCandidates = async (req, res, next) => {
         const skip = (page - 1) * limit;
 
         //records count
-        const total= await Candidates.countDocuments(queryObject);
+        const total= await Users.countDocuments(queryObject);
 
         const noOfPage = Math.ceil(total / limit);
 
@@ -182,12 +194,12 @@ export const getAllCandidates = async (req, res, next) => {
         //show more instead of next page
         queryResult = queryResult.limit(limit * page);
 
-        const candidates = await queryResult;
+        const users = await queryResult;
         res.status(200).json({
             success: true,
             total,
             noOfPage,
-            data: candidates,
+            data: users,
             page,
         })
 
@@ -195,7 +207,7 @@ export const getAllCandidates = async (req, res, next) => {
         console.log(error);
         res.status(500).json({
             success: false,
-            message: "Error fetching all candidates",
+            message: "Error fetching all users",
             error: error.message,
         });
     }

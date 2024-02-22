@@ -21,13 +21,25 @@ const companySchema = new Schema({
     select: true,
   },
   contact: { type: String },
+  address: { type: String },
   location: { type: String },
-  about: { type: String },
-  profileUrl: { type: String },
+  description: { type: String },
+  linkedin: { type: String },
+  website: { type: String },
+  logo: { type: String },
+  introVideo: { type: String },
   jobPosts: [{ type: Schema.Types.ObjectId, ref: "Jobs" }],
+  companyStatus: {
+    type: String,
+    default: "active",
+},
+  appliedCandidates: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users'
+  }]
 });
 
-// middelwares
+// middlewares
 companySchema.pre("save", async function () {
   if (!this.isModified) return;
   const salt = await bcrypt.genSalt(10);
@@ -40,7 +52,7 @@ companySchema.methods.comparePassword = async function (userPassword) {
   return isMatch;
 };
 
-//JSON WEBTOKEN
+//JSON WEB TOKEN
 companySchema.methods.createJWT = function () {
   return JWT.sign({ userId: this._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: "1d",

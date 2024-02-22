@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 import Jwt from "jsonwebtoken";
 
 
-const candidateSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     firstname: {
         type: String,
         required: [true, "First name is required"],
@@ -66,13 +66,21 @@ const candidateSchema = new mongoose.Schema({
     skills: {
         type: String,
     },
+    profileImage: {
+        type: String,
+    },
     cv: [{
         type: String,
         field: "files"
     }],
-    status: {
+    userStatus: {
         type: String,
+        default: "active"
     },
+    appliedJobs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Jobs'
+      }]
 },
     {
         timestamps: true
@@ -81,7 +89,7 @@ const candidateSchema = new mongoose.Schema({
 );
 
 //Middleware
-candidateSchema.pre("save", async function () {
+userSchema.pre("save", async function () {
     if (!this.isModified) return;
     
     const salt = await bcrypt.genSalt(10);
@@ -90,19 +98,19 @@ candidateSchema.pre("save", async function () {
 });
 
 //Compare Password
-candidateSchema.methods.comparePassword = async function (candidatePassword) {
-    const isMatch = await bcrypt.compare(candidatePassword, this.password);
+userSchema.methods.comparePassword = async function (userPassword) {
+    const isMatch = await bcrypt.compare(userPassword, this.password);
 
     return isMatch;
 };
 
 //JWT token
-candidateSchema.methods.createJWT =  function () {
-    return Jwt.sign({ candidateId: this._id }, process.env.JWT_SECRET_KEY, { 
+userSchema.methods.createJWT =  function () {
+    return Jwt.sign({ userId: this._id }, process.env.JWT_SECRET_KEY, { 
         expiresIn: "1d" ,
     });
 };
 
-const Candidates = mongoose.model("Candidates", candidateSchema);
+const Users = mongoose.model("Users", userSchema);
 
-export default Candidates;
+export default Users;

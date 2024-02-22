@@ -1,6 +1,6 @@
 import multer from "multer";
 import path from 'path';
-import Candidates from "../models/candidateModel.js";
+import Candidates from "../models/usersModel.js";
 
 const storage = multer.memoryStorage({
     destination: function (req, file, cb) {

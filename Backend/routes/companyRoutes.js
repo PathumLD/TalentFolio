@@ -1,6 +1,6 @@
 import express from 'express';
 import { rateLimit } from 'express-rate-limit';
-import { getCompanies, getCompanyById, getCompanyJobListing, getCompanyProfile, register, signIn, updateCompanyProfile } from '../controllers/companyController.js';
+import { deleteCompany, getCompanies, getCompanyById, getCompanyJobListing, getCompanyProfile, register, signIn, updateCompanyProfile } from '../controllers/companyController.js';
 import userAuth from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
@@ -28,4 +28,6 @@ router.get("/get-company/:id", userAuth, getCompanyById);
 //Update data
 router.put("/update-company", userAuth, updateCompanyProfile);
 
+//Delete data
+router.put("/delete-company", userAuth, deleteCompany);
 export default router;

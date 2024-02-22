@@ -1,7 +1,7 @@
-import Candidates from "../models/candidateModel.js";
+import Users from "../models/usersModel.js";
 
 
-    //Candidate Register
+    //user Register
 export const register = async (req, res, next) => {
     const {firstname, lastname, email, password, accountType} = req.body;
 
@@ -25,13 +25,13 @@ export const register = async (req, res, next) => {
 
     try {
         
-        const candidateExist = await Candidates.findOne({email});
+        const userExist = await Users.findOne({email});
 
-        if(candidateExist) {
-            next("Candidate already exist");
+        if(userExist) {
+            next("user already exist");
             return;
         } else {
-            const candidate = await Candidates.create({
+            const user = await Users.create({
                 firstname,
                 lastname,
                 email,
@@ -39,25 +39,25 @@ export const register = async (req, res, next) => {
                 accountType,
             });
 
-            //Candidate token
-            const token = candidate.createJWT();
+            //user token
+            const token = user.createJWT();
 
-            if(candidate) {
+            if(user) {
                 res.status(201).send({
                 success: true,
                 message: "Account created successfully",
-                candidate: {
-                    _id: candidate._id,
-                    firstname: candidate.firstname,
-                    lastname: candidate.lastname,
-                    email: candidate.email,
-                    accountType: candidate.accountType,
-                    status: candidate.status,
+                user: {
+                    _id: user._id,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    email: user.email,
+                    accountType: user.accountType,
+                    status: user.status,
                 },
                 token,
             });
             } else {
-                next("Invalid candidate data");
+                next("Invalid user data");
             }
         }
 
@@ -72,7 +72,7 @@ export const register = async (req, res, next) => {
 
 
 
-    // Candidate Login
+    // user Login
 export const signIn = async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -85,30 +85,30 @@ export const signIn = async (req, res, next) => {
         }
 
         //find user by email
-        const candidate = await Candidates.findOne({email }).select("+password");
+        const user = await Users.findOne({email }).select("+password");
 
-        if(!candidate) {
+        if(!user) {
             next("Invalid email or password");
             return;
         }
 
         //Compare Password
-        const isMatch = await candidate.comparePassword(password);
+        const isMatch = await user.comparePassword(password);
         
         if(!isMatch) {
             next("Invalid email or password");
             return;
         }
 
-        candidate.password = undefined;
+        user.password = undefined;
 
-        //Candidate token
-        const token = candidate.createJWT();
+        //user token
+        const token = user.createJWT();
 
         res.status(201).json({
             success: true,
-            message: "Candidate logged in successfully",
-            candidate,
+            message: "user logged in successfully",
+            user,
             token,
         });
 
@@ -129,41 +129,41 @@ export const signIn = async (req, res, next) => {
 
 
 
-// Update Candidate
+// Update user
 
-// export const updateCandidate = async (req, res, next) => {
+// export const updateuser = async (req, res, next) => {
 //     const id = req.params.id;
 //     const {firstname, lastname, email} = req.body;
 
 //     try {
-//         const candidate = await Candidates.findById(id).select("+password");
+//         const user = await Users.findById(id).select("+password");
 
-//         if(!candidate) {
-//             next("Candidate not found");
+//         if(!user) {
+//             next("user not found");
 //             return;
 //         }
 
 //         // Update fields
-//         candidate.firstname = firstname;
-//         candidate.lastname = lastname; 
-//         candidate.email = email;
+//         user.firstname = firstname;
+//         user.lastname = lastname; 
+//         user.email = email;
 
 //         // Reuse existing hashed password
-//         // candidate.password = candidate.password;
+//         // user.password = user.password;
 
 //         // Ensure the password is not updated
-//         candidate.password = undefined;
+//         user.password = undefined;
 
-//         const updatedCandidate = await candidate.save();
+//         const updateduser = await user.save();
 
 //         res.json({
 //         success: true,
-//         message: 'Candidate updated successfully',
-//         candidate: {
-//             _id: updatedCandidate._id,
-//             firstname: updatedCandidate.firstname,
-//             lastname: updatedCandidate.lastname,
-//             email: updatedCandidate.email
+//         message: 'user updated successfully',
+//         user: {
+//             _id: updateduser._id,
+//             firstname: updateduser.firstname,
+//             lastname: updateduser.lastname,
+//             email: updateduser.email
 //         } 
 //         });
 
@@ -177,29 +177,29 @@ export const signIn = async (req, res, next) => {
 // }
 
 
-// export const updateCandidate = async (req, res, next) => {
+// export const updateuser = async (req, res, next) => {
 //     const id = req.params.id;
 //     const {firstname, lastname, email} = req.body;
 
 //     try {
-//         const updatedCandidate = await Candidates.findByIdAndUpdate(id,
+//         const updateduser = await Users.findByIdAndUpdate(id,
 //             { firstname, lastname, email },
 //             { new: true }
 //         ).select("+password");
 
-//         if(!updatedCandidate) {
-//             next("Candidate not found");
+//         if(!updateduser) {
+//             next("user not found");
 //             return;
 //         }
 
 //         res.json({
 //             success: true,
-//             message: 'Candidate updated successfully',
-//             updatedcandidate: {
-//                 _id: updatedCandidate._id,
-//                 firstname: updatedCandidate.firstname,
-//                 lastname: updatedCandidate.lastname,
-//                 email: updatedCandidate.email
+//             message: 'user updated successfully',
+//             updateduser: {
+//                 _id: updateduser._id,
+//                 firstname: updateduser.firstname,
+//                 lastname: updateduser.lastname,
+//                 email: updateduser.email
 //             }  
 //         });
 

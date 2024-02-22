@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import Companies from "../models/companyModel.js";
 
+    //Company Register
 export const register = async (req, res, next) => {
     const { name, email, password } =req.body;
 
@@ -60,6 +61,7 @@ export const register = async (req, res, next) => {
 };
 
 
+    //Company Login
 export const signIn = async (req, res, next) => {
     const { email, password } = req.body;
   
@@ -89,7 +91,7 @@ export const signIn = async (req, res, next) => {
   
       res.status(200).json({
         success: true,
-        message: "Login SUccessfully",
+        message: "Login Successfully",
         user: company,
         token,
       });
@@ -100,16 +102,17 @@ export const signIn = async (req, res, next) => {
   };
 
 
+    //Update Company
 export const updateCompanyProfile =async (req, res, next) => {
-    const { name, contact, address, profileUrl, about } =req.body;
+    const { name, contact, address, logo, description } =req.body;
 
     
     try {
         // Validation
-        if(!name || !contact || !address || !profileUrl || !about) {
-            next("Company name is required!");
-            return;
-        }
+        // if(!name || !contact || !address || !logo || !description ) {
+        //     next("Complete all required fields!");
+        //     return;
+        // }
 
             const id = req.body.user.userId;
             if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -118,10 +121,16 @@ export const updateCompanyProfile =async (req, res, next) => {
 
             const updateCompany = {
                 name,
+                email,
                 contact,
                 address,
-                profileUrl,
-                about,
+                location,
+                description,
+                linkedin,
+                website,
+                logo,
+                introVideo,
+                companyStatus,
                 _id: id,
             };
 
@@ -148,10 +157,12 @@ export const updateCompanyProfile =async (req, res, next) => {
 };
 
 
+    //Get company Profile
 export const getCompanyProfile =async (req, res, next) => {
 
     try {
         const id = req.body.user.userId;
+        console.log(id);
 
         const company = await Companies.findById({_id:id});
 
@@ -178,7 +189,7 @@ export const getCompanyProfile =async (req, res, next) => {
 };
 
 
-//Get all companies
+        //Get all companies
 export const getCompanies =async (req, res, next) => {
 
     try {
@@ -244,7 +255,7 @@ export const getCompanies =async (req, res, next) => {
 };
 
 
-// Get company jobs
+    // Get company jobs
 export const getCompanyJobListing =async (req, res, next) => {
 
     const {search, sort }  = req.query;
@@ -291,7 +302,7 @@ export const getCompanyJobListing =async (req, res, next) => {
 };
 
 
-////Get company by ID
+    //Get company by ID
 export const getCompanyById =async (req, res, next) => {
 
     try {
@@ -321,5 +332,43 @@ export const getCompanyById =async (req, res, next) => {
     } catch (error) {
         console.log(error);
         res.status(404).json({message: error.message});
+    }
+};
+
+
+    //Delete Company
+
+export const deleteCompany =async (req, res, next) => {
+    const {companyStatus} = req.body;
+
+    try {
+        const id = req.body.user.userId;
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).send(`No user with id: ${id}`);
+        }
+
+        const deleteCompany = {
+             companyStatus,
+            _id: id,
+        };
+
+        const company = await Companies.findByIdAndUpdate(id, deleteCompany, { new: true });
+        const token = company.createJWT();
+        company.password = undefined;
+        res.status(200).send({
+            success: true,
+            message: "Company deleted successfully",
+            company,
+            token,
+        });
+
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({
+            success: false,
+            message: "auth error",
+            error: error.message,
+        })
     }
 };

@@ -1,4 +1,4 @@
-import Candidates from "../models/candidateModel.js";
+import Candidates from "../models/usersModel.js";
 
 const uploadCV = async (req, res) => {
     try {
