@@ -7,7 +7,7 @@ const router = express.Router();
 
 router.post("/upload-job", userAuth, createJob);
 
-router.put("/update-job", userAuth, updateJob);
+router.put("/update-job/:jobId", userAuth, updateJob);
 
 
 router.get("/find-jobs", getJobPosts);

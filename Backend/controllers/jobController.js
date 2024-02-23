@@ -70,58 +70,77 @@ export const createJob = async (req, res, next) => {
 
     //Update Job
 export const updateJob = async (req, res) => {
-    try {
-        const {
-            jobTitle,
-            jobType,
-            location,
-            salary,
-            vacancies,
-            experience,
-            desc,
-            requirements,
-        } = req.body;
-        const { jobId } =req.params;
+      try {
+          const {
+              jobTitle,
+              jobType,
+              location,
+              salary,
+              vacancies,
+              experience,
+              desc,
+              requirements,
+          } = req.body;
+          const { jobId } = req.params;
 
-        if (
-            !jobTitle ||
-            !jobType ||
-            !location ||
-            !salary ||
-            !requirements ||
-            !desc
-        ) {
-            next("Please provide all required fields");
-            return;
-        }
-        const id = req.body.user.userId;
-        if (!mongoose.Types.ObjectId.isValid(id)) 
-            return res.status(404).send(`No user with id: ${id}`);
-
-            const jobPost = {
-                jobTitle,
-                jobType,
-                location,
-                salary,
-                vacancies,
-                experience,
-                detail: { desc, requirements },
-                company: id,
-            };
-
-            await Jobs.findByIdAndUpdate(jobId, jobPost, { new: true });
-            res.status(200).json({
-                success: true, 
-                message: "Job updated successfully",
-                jobPost,
-            });
-
-    } catch (error) {
-        console.log(error);
-        res.status(404).json({message: error.message});
-    }
-
+  
+          if (
+              !jobTitle ||
+              !jobType ||
+              !location ||
+              !salary ||
+              !requirements ||
+              !desc
+          ) {
+              return res.status(400).json({
+                  success: false,
+                  message: "Please provide all required fields",
+              });
+          }
+  
+          const id = req.body.user.userId;
+  
+          if (!mongoose.Types.ObjectId.isValid(id)) 
+              return res.status(404).send(`No user with id: ${id}`);
+  
+          // Verify the existence of the job before updating
+          const existingJob = await Jobs.findById(jobId);
+  
+          if (!existingJob) {
+              return res.status(404).json({
+                  success: false,
+                  message: "Job not found",
+              });
+          }
+  
+          const jobPost = {
+              jobTitle,
+              jobType,
+              location,
+              salary,
+              vacancies,
+              experience,
+              'detail.desc': desc,
+              'detail.requirements': requirements,
+              company: id,
+          };
+  
+          const updatedJob = await Jobs.findByIdAndUpdate(jobId, jobPost, { 
+              new: true 
+          });
+  
+          res.status(200).json({
+              success: true,
+              message: "Job updated successfully",
+              updatedJob,
+          });
+  
+      } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: "Internal Server Error" });
+      }
 };
+  
 
 
   //Get Job Posts
@@ -208,50 +227,52 @@ export const getJobPosts = async (req, res) => {
 
 
   //Get Job
-export const getJobById = async (req, res, next) => {
-    try {
-      const { id } = req.params;
+
+  export const getJobById = async (req, res, next) => {
+      try {
+          const { id } = req.params;
   
-      const job = await Jobs.findById({ _id: id }).populate({
-        path: "company",
-        select: "-password",
-      });
+          const job = await Jobs.findById({ _id: id }).populate({
+              path: "company",
+              select: "-password",
+          });
   
-      if (!job) {
-        return res.status(200).send({
-          message: "Job Post Not Found",
-          success: false,
-        });
+          if (!job) {
+              return res.status(404).json({
+                  success: false,
+                  message: "Job Post Not Found",
+              });
+          }
+  
+          // GET SIMILAR JOB POST
+          const searchQuery = {
+              $or: [
+                  { jobTitle: { $regex: job?.jobTitle, $options: "i" } },
+                  { jobType: { $regex: job?.jobType, $options: "i" } },
+              ],
+          };
+  
+          let queryResult = Jobs.find(searchQuery)
+              .populate({
+                  path: "company",
+                  select: "-password",
+              })
+              .sort({ _id: -1 });
+  
+          queryResult = queryResult.limit(6);
+          const similarJobs = await queryResult;
+  
+          res.status(200).json({
+              success: true,
+              data: job,
+              similarJobs,
+          });
+      } catch (error) {
+          console.log(error);
+          res.status(500).json({ message: "Internal Server Error" });
       }
+  };
   
-      //GET SIMILAR JOB POST
-      const searchQuery = {
-        $or: [
-          { jobTitle: { $regex: job?.jobTitle, $options: "i" } },
-          { jobType: { $regex: job?.jobType, $options: "i" } },
-        ],
-      };
-  
-      let queryResult = Jobs.find(searchQuery)
-        .populate({
-          path: "company",
-          select: "-password",
-        })
-        .sort({ _id: -1 });
-  
-      queryResult = queryResult.limit(6);
-      const similarJobs = await queryResult;
-  
-      res.status(200).json({
-        success: true,
-        data: job,
-        similarJobs,
-      });
-    } catch (error) {
-      console.log(error);
-      res.status(404).json({ message: error.message });
-    }
-};
 
 
   //Delete Job Post

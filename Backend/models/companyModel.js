@@ -28,14 +28,21 @@ const companySchema = new Schema({
   website: { type: String },
   logo: { type: String },
   introVideo: { type: String },
-  jobPosts: [{ type: Schema.Types.ObjectId, ref: "Jobs" }],
+  jobPosts: [{ 
+    type: Schema.Types.ObjectId, 
+    ref: "Jobs" 
+  }],
   companyStatus: {
     type: String,
     default: "active",
-},
+  },
   appliedCandidates: [{
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Users'
+    ref: "Users",
+  }],
+  postedEvents: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Events",
   }]
 });
 

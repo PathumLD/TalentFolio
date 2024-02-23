@@ -80,7 +80,11 @@ const userSchema = new mongoose.Schema({
     appliedJobs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Jobs'
-      }]
+      }],
+    registeredEvents : [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Events'
+    }]
 },
     {
         timestamps: true
