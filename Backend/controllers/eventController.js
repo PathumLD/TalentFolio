@@ -207,53 +207,106 @@ export const getAllEvents = async (req, res, next) => {
 
 
     //Get Event
-    export const getEventById = async (req, res, next) => {
-        try {
-            const { id } = req.params;
-    
-            const event = await Events.findById({ _id: id }).populate({
+export const getEventById = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const event = await Events.findById({ _id: id }).populate({
+            path: "company",
+            select: "-password",
+        });
+
+        if (!event) {
+            return res.status(404).json({
+                message: "Event Post Not Found",
+                success: false,
+            });
+        }
+
+        // GET SIMILAR Event POST
+        const searchQuery = {
+            $or: [
+                { eventTitle: { $regex: event.eventTitle || "", $options: "i" } },
+                { eventType: { $regex: event.eventType || "", $options: "i" } },
+            ],
+        };
+
+        let queryResult = Events.find(searchQuery)
+            .populate({
                 path: "company",
                 select: "-password",
-            });
-    
-            if (!event) {
-                return res.status(404).json({
-                    message: "Event Post Not Found",
-                    success: false,
-                });
-            }
-    
-            // GET SIMILAR Event POST
-            const searchQuery = {
-                $or: [
-                    { eventTitle: { $regex: event.eventTitle || "", $options: "i" } },
-                    { eventType: { $regex: event.eventType || "", $options: "i" } },
-                ],
-            };
-    
-            let queryResult = Events.find(searchQuery)
-                .populate({
-                    path: "company",
-                    select: "-password",
-                })
-                .sort({ _id: -1 });
-    
-            queryResult = queryResult.limit(6);
-            const similarEvents = await queryResult;
-    
-            res.status(200).json({
-                success: true,
-                data: event,
-                similarEvents,
-            });
-        } catch (error) {
-            console.log(error);
-            res.status(500).json({ message: "Internal Server Error" });
-        }
-    };
+            })
+            .sort({ _id: -1 });
+
+        queryResult = queryResult.limit(6);
+        const similarEvents = await queryResult;
+
+        res.status(200).json({
+            success: true,
+            data: event,
+            similarEvents,
+        });
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
     
     
     //Delete Event
+export const deleteEvent = async (req, res, next) => {
+    const { eventStatus } = req.body;
+    console.log(eventStatus);
 
+    try {
+        const id = req.params.id; // Use req.params.id to get the event id from the URL
+
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).send(`No event with id: ${id}`);
+        }
+
+        // Find and update the event
+        const event = await Events.findByIdAndUpdate(
+            id,
+            { eventStatus },
+            { new: true }
+        );
+
+        // Check if the event was not found
+        if (!event) {
+            return res.status(404).json({
+                success: false,
+                message: "Event not found",
+            });
+        }
+
+        // Ensure the event has a createJWT method before calling it
+        if (event.createJWT) {
+            const token = event.createJWT();
+            event.password = undefined;
+
+            res.status(200).json({
+                success: true,
+                message: "Event deleted successfully",
+                event,
+                token,
+            });
+        } else {
+            // Log a warning and send a response without the token
+            console.warn("createJWT method not found on event");
+            res.status(200).json({
+                success: true,
+                message: "Event deleted successfully",
+                event,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+};
+    
+    
+    
     
     

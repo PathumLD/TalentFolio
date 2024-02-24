@@ -276,20 +276,56 @@ export const getJobPosts = async (req, res) => {
 
 
   //Delete Job Post
-export const deleteJobPost = async (req, res, next) => {
-  try {
-    const { id } = req.params;
+  export const deleteJobPost = async (req, res, next) => {
+    const { jobStatus } = req.body;
+    console.log(jobStatus);
 
-    await Jobs.findByIdAndDelete(id);
+    try {
+        const id = req.params.id; // Use req.params.id to get the job id from the URL
 
-    res.status(200).send({
-      success: true,
-      message: "Job Post Deleted Successfully.",
-    });
-  } catch (error) {
-    console.log(error);
-    res.status(404).json({ message: error.message });
-  }
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return res.status(404).send(`No job with id: ${id}`);
+        }
+
+        // Find and update the job
+        const job = await Jobs.findByIdAndUpdate(
+            id,
+            { jobStatus },
+            { new: true }
+        );
+
+        // Check if the job was not found
+        if (!job) {
+            return res.status(404).json({
+                success: false,
+                message: "job not found",
+            });
+        }
+
+        // Ensure the job has a createJWT method before calling it
+        if (job.createJWT) {
+            const token = job.createJWT();
+            job.password = undefined;
+
+            res.status(200).json({
+                success: true,
+                message: "job deleted successfully",
+                job,
+                token,
+            });
+        } else {
+            // Log a warning and send a response without the token
+            console.warn("createJWT method not found on job");
+            res.status(200).json({
+                success: true,
+                message: "job deleted successfully",
+                job,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
 };
 
 

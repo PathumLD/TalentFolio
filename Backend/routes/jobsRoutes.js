@@ -13,7 +13,7 @@ router.put("/update-job/:jobId", userAuth, updateJob);
 router.get("/find-jobs", getJobPosts);
 router.get("/get-job-detail/:id", getJobById);
 
-router.delete("/delete-job/:id", userAuth, deleteJobPost);
+router.put("/delete-job/:id", userAuth, deleteJobPost);
 
 
 export default router;

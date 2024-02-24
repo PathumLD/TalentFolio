@@ -24,6 +24,10 @@ const eventSchema = new Schema({
     image: {
         type: String,
     },
+    eventStatus: {
+        type: String,
+        default: "active",
+    },
     company: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Companies",

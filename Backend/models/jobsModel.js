@@ -25,6 +25,10 @@ const jobSchema = new mongoose.Schema({
         type: String,
         default: 0,
     },
+    jobStatus: {
+        type: String,
+        default: "active",
+    },
     details: [{
        desc: {type: String,},
        requirements: {type: String,},
